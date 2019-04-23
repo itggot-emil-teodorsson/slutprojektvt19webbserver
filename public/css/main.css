@@ -1,0 +1,50 @@
+/* INDEX */
+body{
+    background-color: white;
+    height: 1500px;
+    width: 1920;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    display: grid;
+    margin: 0px;
+}
+
+header{
+    background-color: gray;
+    grid-column: 1/6;
+    grid-row: 1/2;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    display: grid;
+}
+
+header .geddit_logo{
+    margin-bottom: 0px;
+    margin-top: 15px;
+    margin-left: 5px;
+    color: white;
+}
+
+header .skapa_inlagg{
+    grid-column: 5/7;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 20px;
+    color: white;
+}
+
+header .logga_in{
+    grid-column: 9/10;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 45px;
+    color: white;
+}
+
+header .registrera{
+    grid-column: 10/11;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 45px;
+    color: white;
+}
