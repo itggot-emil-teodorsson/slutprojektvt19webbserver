@@ -75,3 +75,23 @@ def get_username
         
     session[:result] = db.execute("SELECT users.Username FROM users WHERE UserId = ?", session[:User_id])
 end
+
+def login_check
+    db=SQLite3::Database.new('db/database.db')
+
+    db.results_as_hash = true
+    result = db.execute("SELECT * FROM users")
+
+    k = 0
+    
+    while k <= result.length - 1
+        if session[:User_id] == result[k][0]
+            session[:logged_in] = true
+            break
+        else
+            session[:logged_in] = false
+        end
+        
+        k += 1
+    end
+end

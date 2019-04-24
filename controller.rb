@@ -6,6 +6,7 @@ require_relative 'model.rb'
 
 enable :sessions
 
+
 before('/') do
     get_username
 end
@@ -63,4 +64,16 @@ end
 get('/logga_ut') do
     session[:User_id] = nil
     redirect('/')
+end
+
+before('/skapa_inlagg') do
+    login_check
+end
+
+get('/skapa_inlagg') do
+    if session[:logged_in] == true
+        slim(:skapa_inlagg)
+    else
+        slim(:no_profile)
+    end
 end
