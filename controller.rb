@@ -6,8 +6,12 @@ require_relative 'model.rb'
 
 enable :sessions
 
+before('/') do
+    get_username
+end
+
 get('/') do
-    slim(:index)
+    slim(:index, locals:{users:session[:result]})
 end
 
 get('/registrera') do
@@ -46,16 +50,17 @@ end
 post('/login_values') do
     login_values(params["username"], params["password"])
     if session[:valid] == true
-        redirect('/access')
+        redirect('/')
     else 
         redirect('/no_access')
     end
 end
 
-get('/access') do
-    slim(:access)
-end
-
 get('/no_access') do
     slim(:no_access)
+end
+
+get('/logga_ut') do
+    session[:User_id] = nil
+    redirect('/')
 end

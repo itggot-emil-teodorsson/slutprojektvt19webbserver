@@ -51,3 +51,20 @@ header .registrera{
     margin-top: 45px;
     color: white;
 }
+
+header p{
+    grid-column: 9/10;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    margin-bottom: 0px;
+
+}
+
+header .logga_ut{
+    grid-column: 10/11;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 35px;
+    color: white;
+}

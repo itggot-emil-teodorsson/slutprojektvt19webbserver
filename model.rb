@@ -68,3 +68,10 @@ def register_values
         session[:reg_complete] = false
     end
 end
+
+def get_username
+    db = SQLite3::Database.new("db/database.db")
+    db.results_as_hash = true
+        
+    session[:result] = db.execute("SELECT users.Username FROM users WHERE UserId = ?", session[:User_id])
+end
