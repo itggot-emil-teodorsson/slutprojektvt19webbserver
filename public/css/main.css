@@ -19,10 +19,13 @@ header{
 }
 
 header .geddit_logo{
+    font-size: 35px;
     margin-bottom: 0px;
     margin-top: 15px;
     margin-left: 5px;
     color: white;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 header .skapa_inlagg{

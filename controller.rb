@@ -16,11 +16,27 @@ end
 
 post('/register_values') do
     register_values
-    redirect('/reg_complete')
+    if session[:reg_complete] == true
+        if session[:taken_username] == false
+            redirect('/reg_complete')
+        else
+            redirect('/username_taken')
+        end
+    else
+        redirect('/reg_failed')
+    end
 end
 
 get('/reg_complete') do
     slim(:reg_complete)
+end
+
+get('/reg_failed') do
+    slim(:reg_failed)
+end
+
+get('/username_taken') do
+    slim(:username_taken)
 end
 
 get('/logga_in') do
