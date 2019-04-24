@@ -4,3 +4,12 @@
 - else
     a class="logga_in" href="/logga_in" Logga In
     a class="registrera" href="/registrera" Registrera dig
+
+
+h1 class="inlagg_rubrik" Inlägg:
+
+div class="inlagg"
+    - posts.each do |post|
+        div class="inlagg_text"
+            p class="p_name" = "#{post["Username"]}:"
+            p class="p_text" = post["Text"]

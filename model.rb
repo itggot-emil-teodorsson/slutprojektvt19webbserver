@@ -76,6 +76,13 @@ def get_username
     session[:result] = db.execute("SELECT users.Username FROM users WHERE UserId = ?", session[:User_id])
 end
 
+def get_posts
+    db = SQLite3::Database.new("db/database.db")
+    db.results_as_hash = true
+    
+    session[:post_text] = db.execute("SELECT posts.Text, users.Username FROM posts INNER JOIN users ON users.UserId = posts.UserId_P")
+end
+
 def login_check
     db=SQLite3::Database.new('db/database.db')
 
@@ -94,4 +101,15 @@ def login_check
         
         k += 1
     end
+end
+
+def upload_post
+    db=SQLite3::Database.new('db/database.db')
+    
+    db.results_as_hash = true
+    result = db.execute("SELECT * FROM posts")
+
+    session[:text] = params["p_text"]
+
+    db.execute("INSERT INTO posts (Text, UserId_P, Upvotes) VALUES (?,?,?)", session[:text], session[:User_id], 0)
 end

@@ -9,10 +9,11 @@ enable :sessions
 
 before('/') do
     get_username
+    get_posts
 end
 
 get('/') do
-    slim(:index, locals:{users:session[:result]})
+    slim(:index, locals:{users:session[:result], posts:session[:post_text]})
 end
 
 get('/registrera') do
@@ -76,4 +77,9 @@ get('/skapa_inlagg') do
     else
         slim(:no_profile)
     end
+end
+
+post('/uploading_post') do
+    upload_post
+    redirect('/')
 end
