@@ -1,9 +1,10 @@
-- if session[:User_id]
-    p = users[0]["Username"]
-    a class="logga_ut" href="/logga_ut" Logga Ut
-- else
-    a class="logga_in" href="/logga_in" Logga In
-    a class="registrera" href="/registrera" Registrera dig
+div class="header2"
+    - if session[:User_id]
+        p = users[0]["Username"]
+        a class="logga_ut" href="/logga_ut" Logga Ut
+    - else
+        a class="logga_in" href="/logga_in" Logga In
+        a class="registrera" href="/registrera" Registrera dig
 
 
 h1 class="inlagg_rubrik" Inlägg:
