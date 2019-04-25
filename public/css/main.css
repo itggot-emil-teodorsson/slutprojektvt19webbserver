@@ -109,6 +109,10 @@ header .skapa_inlagg{
 .inlagg .inlagg_text .p_text{
     grid-column: 2/9;
     margin-right: 5px;
+    margin-top: 15px;
+    text-decoration: none;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .inlagg .inlagg_text .r_inlagg{

@@ -13,4 +13,4 @@ div class="inlagg"
     - posts.each do |post|
         div class="inlagg_text"
             p class="p_name" = "#{post["Username"]}:"
-            p class="p_text" = post["Text"]
+            a class="p_text" href="/show_post/#{post["postId"]}" = post["Text"]

@@ -83,3 +83,8 @@ post('/uploading_post') do
     upload_post
     redirect('/')
 end
+
+get('/show_post/:postId') do
+    show_post
+    slim(:show_post, locals:{post_content:session[:PostText], post_user:session[:post_creator]})
+end
