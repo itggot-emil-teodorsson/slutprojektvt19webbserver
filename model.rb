@@ -80,7 +80,7 @@ def get_posts
     db = SQLite3::Database.new("db/database.db")
     db.results_as_hash = true
     
-    session[:post_text] = db.execute("SELECT posts.Text, posts.PostId, users.Username FROM posts INNER JOIN users ON users.UserId = posts.UserId_P")
+    session[:post_text] = db.execute("SELECT posts.Text, posts.PostId, users.Username FROM posts INNER JOIN users ON users.UserId = posts.UserIdP")
 end
 
 def login_check
@@ -120,6 +120,7 @@ def show_post
 
     session[:post_id] = params["postId"]
 
+    session[:UId_P] = db.execute("SELECT posts.UserIdP FROM posts WHERE PostId = ?", session[:post_id])
     session[:PostText] = db.execute("SELECT posts.Text FROM posts WHERE PostId = ?", session[:post_id])
-    session[:post_creator] = db.execute("SELECT users.Username FROM users WHERE UserId = ?", session[:post_id])
+    session[:post_creator] = db.execute("SELECT users.Username FROM users WHERE UserId = ?", session[:UId_P][0]["UserIdP"])
 end
