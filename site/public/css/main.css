@@ -203,8 +203,24 @@ header .skapa_inlagg{
     text-align: center;
 }
 
-.showpost_box .text_box .updownvote .upvote_arrow{
+.showpost_box .text_box .updownvote .u_arrow{
     grid-column: 1/2;
     grid-row: 1/2;
-    background-image: url(../../site/img/upvote_arrow.png);
+    background-image: url(../../img/upvote_arrow.png);
+    text-align: center;
+    margin-top: 15px;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+.showpost_box .text_box .updownvote .d_arrow{
+    grid-column: 3/4;
+    grid-row: 1/2;
+    background-image: url(../../img/downvote_arrow.png);
+    text-align: center;
+    margin-top: 12px;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
 }

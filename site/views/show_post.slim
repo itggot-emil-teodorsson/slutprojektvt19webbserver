@@ -4,4 +4,5 @@ div class="showpost_box"
         p class="text"= post_content[0]["Text"]
         div class="updownvote"
                 p class="upvotes" = post_upvotes[0]["Upvotes"]
-                div class="upvote_arrow"
+                a class="u_arrow" href="/u_vote/#{session[:post_id]}" +
+                a class="d_arrow" href="/d_vote/#{session[:post_id]}" -
