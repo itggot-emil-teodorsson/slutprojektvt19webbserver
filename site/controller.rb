@@ -109,7 +109,7 @@ get('/d_vote/:post_id') do
     redirect back
 end
 
-get('/edit_post/:post_id') do
+get('/edit_post') do
     slim(:edit_post)
 end
 
