@@ -178,3 +178,10 @@ def edit_post
 
     db.execute("UPDATE posts SET Text = ? WHERE postId = ?", session[:new_text], session[:post_id])
 end
+
+def remove_post
+    db = SQLite3::Database.new("db/database.db")
+    db.results_as_hash = true
+
+    db.execute("DELETE FROM posts WHERE postId = ?", session[:post_id])
+end

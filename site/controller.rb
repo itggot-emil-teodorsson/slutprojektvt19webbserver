@@ -118,3 +118,11 @@ post('/uploading_edit') do
     redirect('/')
 end
 
+get('/remove_post/:post_id') do
+    remove_post
+    redirect('/remove_confirmed')
+end
+
+get('/remove_confirmed') do
+    slim(:remove_confirmed)
+end
