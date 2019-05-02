@@ -14,3 +14,8 @@ div class="inlagg"
         div class="inlagg_text"
             p class="p_name" = "#{post["Username"]}:"
             a class="p_text" href="/show_post/#{post["postId"]}" = post["Text"]
+            div class="upvotes_i"
+                p class="p_upvotes" = "#{post["Upvotes"]}"
+                a class="p_u_arrow" href="/u_vote_i/#{post["postId"]}" +
+                a class="p_d_arrow" href="/d_vote_i/#{post["postId"]}" -
+                

@@ -115,12 +115,37 @@ header .skapa_inlagg{
     font-family: 'Times New Roman', Times, serif;
 }
 
-.inlagg .inlagg_text .r_inlagg{
-    grid-column: 9/10
+.inlagg .inlagg_text .upvotes_i{
+    grid-column: 10/12;
+    grid-row: 1/2;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    display: grid;
 }
 
-.inlagg .inlagg_text .tb_inlagg{
-    grid-column: 10/11
+.inlagg .inlagg_text .upvotes_i .p_upvotes{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    margin: 0px;
+    text-align: center;
+}
+
+.inlagg .inlagg_text .upvotes_i .p_u_arrow{
+    grid-column: 1/2;
+    grid-row: 2/3;
+    margin: 0px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+.inlagg .inlagg_text .upvotes_i .p_d_arrow{
+    grid-column: 3/4;
+    grid-row: 2/3;
+    margin: 0px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
 }
 
 /* SKAPA_INLAGG */

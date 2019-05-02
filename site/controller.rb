@@ -16,6 +16,16 @@ get('/') do
     slim(:index, locals:{users:session[:result], posts:session[:post_text]})
 end
 
+get('/u_vote_i/:postId') do
+    upvote_post_i
+    redirect back
+end
+
+get('/d_vote_i/:postId') do
+    downvote_post_i
+    redirect back
+end
+
 get('/registrera') do
     slim(:register)
 end
