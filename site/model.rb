@@ -169,3 +169,12 @@ def downvote_post_i
 
     db.execute("UPDATE posts SET Upvotes = ? WHERE postId = ?", session[:new_upvotes], params["postId"])
 end
+
+def edit_post
+    db = SQLite3::Database.new("db/database.db")
+    db.results_as_hash = true
+
+    session[:new_text] = params["e_text"]
+
+    db.execute("UPDATE posts SET Text = ? WHERE postId = ?", session[:new_text], session[:post_id])
+end

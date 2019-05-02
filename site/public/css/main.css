@@ -249,3 +249,48 @@ header .skapa_inlagg{
     color: black;
     font-size: 20px;
 }
+
+.showpost_box .text_box .ta_bort{
+    grid-row: 8/9;
+    grid-column: 2/3;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    margin-top: 20px;
+}
+
+.showpost_box .text_box .redigera{
+    grid-row: 8/9;
+    grid-column: 1/2;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    margin-top: 20px;
+}
+
+/* REDIGERA INLÄGG */
+.edit_post{
+    grid-row: 3/8;
+    grid-column: 2/5;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    display: grid;
+}
+
+.edit_post form{
+    grid-row: 1/7;
+    grid-column: 1/4;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    display: grid;
+}
+
+.edit_post form .edit_text{
+    grid-row: 1/6;
+    grid-column: 1/4;
+}
+
+.edit_post form .confirm{
+    grid-row: 6/7;
+    grid-column: 2/3;
+}

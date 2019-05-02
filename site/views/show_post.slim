@@ -6,3 +6,7 @@ div class="showpost_box"
                 p class="upvotes" = post_upvotes[0]["Upvotes"]
                 a class="u_arrow" href="/u_vote/#{session[:post_id]}" +
                 a class="d_arrow" href="/d_vote/#{session[:post_id]}" -
+        
+        - if session[:User_id] == post_userid[0]["UserIdP"]
+                a class="ta_bort" href="/remove_post/#{session[:post_id]}" Ta bort
+                a class="redigera" href="/edit_post/#{session[:post_id]}" Redigera

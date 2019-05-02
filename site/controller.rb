@@ -96,7 +96,7 @@ end
 
 get('/show_post/:postId') do
     show_post
-    slim(:show_post, locals:{post_content:session[:PostText], post_user:session[:post_creator], post_upvotes:session[:upvotes]})
+    slim(:show_post, locals:{post_content:session[:PostText], post_user:session[:post_creator], post_upvotes:session[:upvotes], post_userid:session[:UId_P]})
 end
 
 get('/u_vote/:post_id') do
@@ -108,3 +108,13 @@ get('/d_vote/:post_id') do
     downvote_post
     redirect back
 end
+
+get('/edit_post/:post_id') do
+    slim(:edit_post)
+end
+
+post('/uploading_edit') do
+    edit_post
+    redirect('/')
+end
+
