@@ -9,8 +9,8 @@ enable :sessions
 
 
 before('/') do
-    get_username
-    get_posts
+    session[:result] = get_username
+    session[:post_text] = get_posts
 end
 
 # Display Landing Page
@@ -85,8 +85,8 @@ end
 #
 # @see Model#login_values
 post('/login_values') do
-    login_values(params["username"], params["password"])
-    if session[:valid] == true
+    valid = login_values(params)
+    if valid == true
         redirect('/')
     else 
         redirect('/no_access')

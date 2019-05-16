@@ -1,32 +1,31 @@
 module Model
+
+    #om man sätter (params) så kallar du på hela dictionaryn och den kan inte sluta fungera om man byter från sinatra
     
-    def login_values(x, y)
+    def login_values(params)
         db=SQLite3::Database.new('db/database.db')
 
         db.results_as_hash = true
         result = db.execute("SELECT * FROM users")
-
-        session[:username] = x
-        session[:password] = y
         
         i = 0
         while i <= result.length - 1
-            if session[:username] == result[i][1]
-                if BCrypt::Password.new(result[i][2]) == session[:password]
-                    session[:valid] = true
+            if params["username"] == result[i][1]
+                if BCrypt::Password.new(result[i][2]) == params["password"]
+                    valid = true
                     session[:User_id] = result[i][0]
                     break
                 else
-                    session[:valid] = false
+                    valid = false
                 end
             else
-                session[:valid] = false
+                valid = false
             end
 
             i += 1
         end
         
-        return session[:valid]
+        return valid
     end
 
     def register_values
@@ -67,15 +66,16 @@ module Model
     def get_username
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
-            
-        session[:result] = db.execute("SELECT users.Username FROM users WHERE UserId = ?", session[:User_id])
+
+        return db.execute("SELECT users.Username FROM users WHERE UserId = ?", session[:User_id])
     end
 
     def get_posts
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
-        
-        session[:post_text] = db.execute("SELECT posts.Text, posts.PostId, posts.Upvotes, users.Username FROM posts INNER JOIN users ON users.UserId = posts.UserIdP")
+
+        #returna bara istället för att tilldela en sessions variabel kan tilldela en variabel i controller.
+        return db.execute("SELECT posts.Text, posts.PostId, posts.Upvotes, users.Username FROM posts INNER JOIN users ON users.UserId = posts.UserIdP")
     end
 
     def login_check
