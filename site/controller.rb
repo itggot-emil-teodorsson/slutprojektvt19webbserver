@@ -109,7 +109,7 @@ get('/logga_ut') do
 end
 
 before('/skapa_inlagg') do
-    login_check(params, session[:User_id])
+    session[:logged_in] = login_check(params, session[:User_id])
 end
 
 # Displays a form, if you're logged in

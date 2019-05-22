@@ -91,14 +91,16 @@ module Model
         
         while k <= result.length - 1
             if params["User_id"] == result[k][0]
-                session[:logged_in] = true
+                params["logged_in"] = true
                 break
             else
-                session[:logged_in] = false
+                params["logged_in"] = false
             end
             
             k += 1
         end
+
+        return params["logged_in"]
     end
 
     def upload_post(params, x)
