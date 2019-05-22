@@ -174,19 +174,21 @@ module Model
         db.execute("UPDATE posts SET Upvotes = ? WHERE postId = ?", new_upvotes, params["postId"])
     end
 
-    def edit_post
+    def edit_post(params, x)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
 
-        session[:new_text] = params["e_text"]
+        params["post_id"] = x
 
-        db.execute("UPDATE posts SET Text = ? WHERE postId = ?", session[:new_text], session[:post_id])
+        db.execute("UPDATE posts SET Text = ? WHERE postId = ?", params["e_text"], params["post_id"])
     end
 
-    def remove_post
+    def remove_post(params, x)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
 
-        db.execute("DELETE FROM posts WHERE postId = ?", session[:post_id])
+        params["post_id"] = x
+
+        db.execute("DELETE FROM posts WHERE postId = ?", params["post_id"])
     end
 end

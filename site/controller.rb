@@ -165,7 +165,7 @@ end
 #
 # @see Model#edit_post
 post('/uploading_edit') do
-    edit_post
+    edit_post(params, session[:post_id])
     redirect('/')
 end
 
@@ -173,7 +173,7 @@ end
 #
 # @see Model#remove_post
 get('/remove_post/:post_id') do
-    remove_post
+    remove_post(params, session[:post_id])
     redirect('/remove_confirmed')
 end
 
