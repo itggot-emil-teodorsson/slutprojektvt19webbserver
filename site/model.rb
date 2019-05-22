@@ -1,5 +1,15 @@
+# The file with all of the functions
 module Model
     
+    # Attempts to log in a user
+    #
+    # @param [Hash] params form data
+    # @option params [String] username The username
+    # @option params [String] password The password
+    #
+    # @return [Hash]
+    #   * valid [Boolean] whether the given login info is valid or not
+    #   * user_id [Integer] The user's ID if they were successfully logged in
     def login_values(params)
         db=SQLite3::Database.new('db/database.db')
 
@@ -22,12 +32,21 @@ module Model
 
             i += 1
         end
-
-        p params
         
         return valid, params["User_id"]
     end
 
+    # Attempts to create a new user
+    #
+    # @param [Hash] params form data
+    # @option params [String] reg_username The username
+    # @option params [String] reg_password The password
+    # @option params [String] rereg_password The repeated password
+    #
+    # @return [Hash]
+    #   * different_passwords [Boolean] whether the password and the repeated password are the same or not
+    #   * username_taken [Boolean] whether the username you're trying to register already has been registered or not
+    #   * empty_form [Boolean] whether a part of the form is empty or not
     def register_values(params)
         db=SQLite3::Database.new('db/database.db')
         
@@ -52,14 +71,10 @@ module Model
                     if username_taken == false
                         hash_password = BCrypt::Password.create(params["reg_password"])
                         db.execute("INSERT INTO users (Username, Password) VALUES (?,?)", params["reg_username"], hash_password)
-                        
-                        taken_username = false
-                    else
-                        taken_username = true
                     end
-                    reg_complete = true
+                    different_passwords = true
                 else
-                    reg_complete = false
+                    different_passwords = false
                 end
             else
                 empty_form = true
@@ -68,31 +83,53 @@ module Model
             empty_form = true
         end
 
-        return reg_complete, taken_username, empty_form
+        return different_passwords, username_taken, empty_form
     end
 
-    def get_username(params, x)
+    # Attempts to acquire the username of the user that is currently logged in
+    #
+    # @param [Hash] params Calls on the dictionary
+    # @param [Integer] user_id The user's ID
+    #
+    # @return [Hash]
+    #   * username [String] The wanted username
+    def get_username(params, user_id)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
         
-        params["User_id"] = x
-        return db.execute("SELECT users.Username FROM users WHERE UserId = ?", params["User_id"])
+        params["User_id"] = user_id
+        username = db.execute("SELECT users.Username FROM users WHERE UserId = ?", params["User_id"])
+
+        return username
     end
 
+    # Acquires all of the posts
+    #
+    # @return [Hash]
+    #   * posts [Array] A list of all posts
     def get_posts
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
 
-        return db.execute("SELECT posts.Text, posts.PostId, posts.Upvotes, users.Username FROM posts INNER JOIN users ON users.UserId = posts.UserIdP")
+        posts = db.execute("SELECT posts.Text, posts.PostId, posts.Upvotes, users.Username FROM posts INNER JOIN users ON users.UserId = posts.UserIdP")
+
+        return posts
     end
 
-    def login_check(params, x)
+    # Checks whether you are logged in or not
+    #
+    # @param [Hash] params Calls on the dictionary
+    # @param [Integer] user_id The user's ID
+    #
+    # @return [Hash]
+    #   * logged_in [Boolean] whether the user is logged in or not
+    def login_check(params, user_id)
         db=SQLite3::Database.new('db/database.db')
 
         db.results_as_hash = true
         result = db.execute("SELECT * FROM users")
 
-        params["User_id"] = x
+        params["User_id"] = user_id
 
         k = 0
         
@@ -110,17 +147,33 @@ module Model
         return params["logged_in"]
     end
 
-    def upload_post(params, x)
+    # Attemts to insert a new row in the posts table
+    #
+    # @param [Hash] params form data
+    # @option params [String] p_text The post's text
+    # @param [Integer] user_id The user's ID
+    def upload_post(params, user_id)
         db=SQLite3::Database.new('db/database.db')
         
         db.results_as_hash = true
         result = db.execute("SELECT * FROM posts")
 
-        params["User_id"] = x
+        params["User_id"] = user_id
 
         db.execute("INSERT INTO posts (Text, UserIdP, Upvotes) VALUES (?,?,?)", params["p_text"], params["User_id"], 0)
     end
 
+    # Shows an individual post
+    #
+    # @param [Hash] params form data
+    # @option params [Integer] postId The post's ID
+    #
+    # @return [Hash]
+    #   * PostText [String] The post's text
+    #   * post_creator [String] The name of the user who created the post
+    #   * upvotes [Integer] The ammount of upvotes that the post has
+    #   * UId_P [Integer] The creator's ID
+    #   * postId [Integer] The post's ID
     def show_post(params)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
@@ -133,11 +186,15 @@ module Model
         return params["PostText"], params["post_creator"], params["upvotes"], params["UId_P"], params["postId"]
     end
 
-    def upvote_post(params, x)
+    # Upvotes a specific post when you show it individually
+    #
+    # @param [Hash] params Calls on the dictionary
+    # @param [Integer] post_id The post's ID
+    def upvote_post(params, post_id)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
 
-        params["post_id"] = x
+        params["post_id"] = post_id
 
         current_upvotes = db.execute("SELECT posts.Upvotes FROM posts WHERE postId = ?", params["post_id"])
 
@@ -146,11 +203,15 @@ module Model
         db.execute("UPDATE posts SET Upvotes = ? WHERE postId = ?", new_upvotes, params["post_id"])
     end
 
-    def downvote_post(params, x)
+    # Downvotes a specific post when you show it individually
+    #
+    # @param [Hash] params Calls on the dictionary
+    # @param [Integer] post_id The post's ID
+    def downvote_post(params, post_id)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
 
-        params["post_id"] = x
+        params["post_id"] = post_id
 
         current_upvotes = db.execute("SELECT posts.Upvotes FROM posts WHERE postId = ?", params["post_id"])
 
@@ -159,6 +220,10 @@ module Model
         db.execute("UPDATE posts SET Upvotes = ? WHERE postId = ?", new_upvotes, params["post_id"])
     end
 
+    # Upvotes a specific post from the main page
+    #
+    # @param [Hash] params form data
+    # @option params [Integer] postId The post's ID
     def upvote_post_i(params)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
@@ -170,6 +235,10 @@ module Model
         db.execute("UPDATE posts SET Upvotes = ? WHERE postId = ?", new_upvotes, params["postId"])
     end
 
+    # Downvotes a specific post from the main page
+    #
+    # @param [Hash] params form data
+    # @option params [Integer] postId The post's ID
     def downvote_post_i(params)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
@@ -181,20 +250,29 @@ module Model
         db.execute("UPDATE posts SET Upvotes = ? WHERE postId = ?", new_upvotes, params["postId"])
     end
 
-    def edit_post(params, x)
+    # Updates a row in the posts table
+    #
+    # @param [Hash] params form data
+    # @option params [String] e_text The new text in the post
+    # @param [Integer] post_id The post's ID
+    def edit_post(params, post_id)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
 
-        params["post_id"] = x
+        params["post_id"] = post_id
 
         db.execute("UPDATE posts SET Text = ? WHERE postId = ?", params["e_text"], params["post_id"])
     end
 
-    def remove_post(params, x)
+    # Deletes a row from the posts table
+    #
+    # @param [Hash] params Calls on the dictionary
+    # @param [Integer] post_id The post's ID
+    def remove_post(params, post_id)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
 
-        params["post_id"] = x
+        params["post_id"] = post_id
 
         db.execute("DELETE FROM posts WHERE postId = ?", params["post_id"])
     end
