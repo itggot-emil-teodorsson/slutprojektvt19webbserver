@@ -21,6 +21,8 @@ end
 
 # Calls on a function which upvotes the post and redirects to '/'
 #
+# @param [Integer] :postId, The ID of the post
+#
 # @see Model#upvote_post_i
 get('/u_vote_i/:postId') do
     upvote_post_i(params)
@@ -28,6 +30,8 @@ get('/u_vote_i/:postId') do
 end
 
 # Calls on a function which downvotes the post in question
+#
+# @param [Integer] :postId, The ID of the post
 #
 # @see Model#downvote_post_i
 get('/d_vote_i/:postId') do
@@ -42,6 +46,10 @@ get('/registrera') do
 end
 
 # Attempts to register login values
+#
+# @param [String] reg_username, The username
+# @param [String] reg_password, The password
+# @param [String] rereg_password, The repeated password
 #
 # @see Model#register_values
 post('/register_values') do
@@ -93,6 +101,9 @@ end
 
 # Compares the values that you've tried to log in with, with the values that exist in the database and then redirects to either '/' or '/no_access'
 #
+# @param [String] username, The username
+# @param [String] password, The password
+#
 # @see Model#login_values
 post('/login_values') do
     valid = login_values(params)[0]
@@ -134,6 +145,9 @@ end
 
 # Attempts to insert the form-values in the database
 #
+# @param [String] p_text, The text of the post
+# @param [Integer] :User_id, The ID of the user
+#
 # @see Model#upload_post
 post('/uploading_post') do
     upload_post(params, session[:User_id])
@@ -141,6 +155,8 @@ post('/uploading_post') do
 end
 
 # Displays an individual post
+#
+# @param [Integer] :postId, The ID of the post
 #
 # @see Model#show_post
 get('/show_post/:postId') do
@@ -151,17 +167,21 @@ end
 
 # Calls on a function that upvotes the post when showing a single post and redirects back to '/show_post/:postId'
 #
+# @param [Integer] :post_id, The ID of the post
+#
 # @see Model#upvote_post
 get('/u_vote/:post_id') do
-    upvote_post(params, session[:post_id])
+    upvote_post(params)
     redirect back
 end
 
 # Calls on a function that downvotes the post when showing a single post and redirects back to '/show_post/:postId'
 #
+# @param [Integer] :post_id, The ID of the post
+#
 # @see Model#downvote_post
 get('/d_vote/:post_id') do
-    downvote_post(params, session[:post_id])
+    downvote_post(params)
     redirect back
 end
 
@@ -173,6 +193,9 @@ end
 
 # Updates an existing post and redirects to '/'
 #
+# @param [String] e_text, The new text of the post
+# @param [Integer] :post_id, The ID of the post
+#
 # @see Model#edit_post
 post('/uploading_edit') do
     edit_post(params, session[:post_id])
@@ -181,9 +204,11 @@ end
 
 # Deletes an existing post and redirects to '/remove_confirmed'
 #
+# @param [Integer] :post_id, The ID of the post
+#
 # @see Model#remove_post
 get('/remove_post/:post_id') do
-    remove_post(params, session[:post_id])
+    remove_post(params)
     redirect('/remove_confirmed')
 end
 

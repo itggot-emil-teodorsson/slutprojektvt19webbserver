@@ -189,12 +189,9 @@ module Model
     # Upvotes a specific post when you show it individually
     #
     # @param [Hash] params Calls on the dictionary
-    # @param [Integer] post_id The post's ID
-    def upvote_post(params, post_id)
+    def upvote_post(params)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
-
-        params["post_id"] = post_id
 
         current_upvotes = db.execute("SELECT posts.Upvotes FROM posts WHERE postId = ?", params["post_id"])
 
@@ -206,12 +203,9 @@ module Model
     # Downvotes a specific post when you show it individually
     #
     # @param [Hash] params Calls on the dictionary
-    # @param [Integer] post_id The post's ID
-    def downvote_post(params, post_id)
+    def downvote_post(params)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
-
-        params["post_id"] = post_id
 
         current_upvotes = db.execute("SELECT posts.Upvotes FROM posts WHERE postId = ?", params["post_id"])
 
@@ -268,11 +262,9 @@ module Model
     #
     # @param [Hash] params Calls on the dictionary
     # @param [Integer] post_id The post's ID
-    def remove_post(params, post_id)
+    def remove_post(params)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
-
-        params["post_id"] = post_id
 
         db.execute("DELETE FROM posts WHERE postId = ?", params["post_id"])
     end
