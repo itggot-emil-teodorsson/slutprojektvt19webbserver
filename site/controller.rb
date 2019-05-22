@@ -23,7 +23,7 @@ end
 #
 # @see Model#upvote_post_i
 get('/u_vote_i/:postId') do
-    upvote_post_i
+    upvote_post_i(params)
     redirect back
 end
 
@@ -31,7 +31,7 @@ end
 #
 # @see Model#downvote_post_i
 get('/d_vote_i/:postId') do
-    downvote_post_i
+    downvote_post_i(params)
     redirect back
 end
 
@@ -143,7 +143,7 @@ end
 #
 # @see Model#upvote_post
 get('/u_vote/:post_id') do
-    upvote_post
+    upvote_post(params, session[:post_id])
     redirect back
 end
 
@@ -151,7 +151,7 @@ end
 #
 # @see Model#downvote_post
 get('/d_vote/:post_id') do
-    downvote_post
+    downvote_post(params, session[:post_id])
     redirect back
 end
 

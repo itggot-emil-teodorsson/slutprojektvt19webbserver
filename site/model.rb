@@ -126,48 +126,52 @@ module Model
         return params["PostText"], params["post_creator"], params["upvotes"], params["UId_P"], params["postId"]
     end
 
-    def upvote_post
+    def upvote_post(params, x)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
 
-        session[:current_upvotes] = db.execute("SELECT posts.Upvotes FROM posts WHERE postId = ?", session[:post_id])
+        params["post_id"] = x
 
-        session[:new_upvotes] = session[:current_upvotes][0]["Upvotes"].to_i + 1
+        current_upvotes = db.execute("SELECT posts.Upvotes FROM posts WHERE postId = ?", params["post_id"])
 
-        db.execute("UPDATE posts SET Upvotes = ? WHERE postId = ?", session[:new_upvotes], session[:post_id])
+        new_upvotes = current_upvotes[0]["Upvotes"].to_i + 1
+
+        db.execute("UPDATE posts SET Upvotes = ? WHERE postId = ?", new_upvotes, params["post_id"])
     end
 
-    def downvote_post
+    def downvote_post(params, x)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
 
-        session[:current_upvotes] = db.execute("SELECT posts.Upvotes FROM posts WHERE postId = ?", session[:post_id])
+        params["post_id"] = x
 
-        session[:new_upvotes] = session[:current_upvotes][0]["Upvotes"].to_i - 1
+        current_upvotes = db.execute("SELECT posts.Upvotes FROM posts WHERE postId = ?", params["post_id"])
 
-        db.execute("UPDATE posts SET Upvotes = ? WHERE postId = ?", session[:new_upvotes], session[:post_id])
+        new_upvotes = current_upvotes[0]["Upvotes"].to_i - 1
+
+        db.execute("UPDATE posts SET Upvotes = ? WHERE postId = ?", new_upvotes, params["post_id"])
     end
 
-    def upvote_post_i
+    def upvote_post_i(params)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
 
-        session[:current_upvotes] = db.execute("SELECT posts.Upvotes FROM posts WHERE postId = ?", params["postId"])
+        current_upvotes = db.execute("SELECT posts.Upvotes FROM posts WHERE postId = ?", params["postId"])
 
-        session[:new_upvotes] = session[:current_upvotes][0]["Upvotes"].to_i + 1
+        new_upvotes = current_upvotes[0]["Upvotes"].to_i + 1
 
-        db.execute("UPDATE posts SET Upvotes = ? WHERE postId = ?", session[:new_upvotes], params["postId"])
+        db.execute("UPDATE posts SET Upvotes = ? WHERE postId = ?", new_upvotes, params["postId"])
     end
 
-    def downvote_post_i
+    def downvote_post_i(params)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
 
-        session[:current_upvotes] = db.execute("SELECT posts.Upvotes FROM posts WHERE postId = ?", params["postId"])
+        current_upvotes = db.execute("SELECT posts.Upvotes FROM posts WHERE postId = ?", params["postId"])
 
-        session[:new_upvotes] = session[:current_upvotes][0]["Upvotes"].to_i - 1
+        new_upvotes = current_upvotes[0]["Upvotes"].to_i - 1
 
-        db.execute("UPDATE posts SET Upvotes = ? WHERE postId = ?", session[:new_upvotes], params["postId"])
+        db.execute("UPDATE posts SET Upvotes = ? WHERE postId = ?", new_upvotes, params["postId"])
     end
 
     def edit_post
