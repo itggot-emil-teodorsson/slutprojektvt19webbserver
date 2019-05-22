@@ -114,16 +114,16 @@ module Model
         db.execute("INSERT INTO posts (Text, UserIdP, Upvotes) VALUES (?,?,?)", params["p_text"], params["User_id"], 0)
     end
 
-    def show_post
+    def show_post(params)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
 
-        session[:post_id] = params["postId"]
+        params["UId_P"] = db.execute("SELECT posts.UserIdP FROM posts WHERE PostId = ?", params["postId"])
+        params["PostText"] = db.execute("SELECT posts.Text FROM posts WHERE PostId = ?", params["postId"])
+        params["upvotes"] = db.execute("SELECT posts.Upvotes FROM posts WHERE PostId = ?", params["postId"])
+        params["post_creator"] = db.execute("SELECT users.Username FROM users WHERE UserId = ?", params["UId_P"][0]["UserIdP"])
 
-        session[:UId_P] = db.execute("SELECT posts.UserIdP FROM posts WHERE PostId = ?", session[:post_id])
-        session[:PostText] = db.execute("SELECT posts.Text FROM posts WHERE PostId = ?", session[:post_id])
-        session[:upvotes] = db.execute("SELECT posts.Upvotes FROM posts WHERE PostId = ?", session[:post_id])
-        session[:post_creator] = db.execute("SELECT users.Username FROM users WHERE UserId = ?", session[:UId_P][0]["UserIdP"])
+        return params["PostText"], params["post_creator"], params["upvotes"], params["UId_P"], params["postId"]
     end
 
     def upvote_post

@@ -134,8 +134,9 @@ end
 #
 # @see Model#show_post
 get('/show_post/:postId') do
-    show_post
-    slim(:show_post, locals:{post_content:session[:PostText], post_user:session[:post_creator], post_upvotes:session[:upvotes], post_userid:session[:UId_P]})
+    values = show_post(params)
+    session[:post_id] = show_post(params)[4]
+    slim(:show_post, locals:{post_content:values[0], post_user:values[1], post_upvotes:values[2], post_userid:values[3]})
 end
 
 # Calls on a function that upvotes the post when showing a single post and redirects back to '/show_post/:postId'
