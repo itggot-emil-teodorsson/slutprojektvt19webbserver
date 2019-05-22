@@ -45,9 +45,9 @@ end
 #
 # @see Model#register_values
 post('/register_values') do
-    register_values
-    if session[:reg_complete] == true
-        if session[:taken_username] == false
+    reg_and_taken = register_values(params)
+    if reg_and_taken[0] == true
+        if reg_and_taken[1] == false
             redirect('/reg_complete')
         else
             redirect('/username_taken')

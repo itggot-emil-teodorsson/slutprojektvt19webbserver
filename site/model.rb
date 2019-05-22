@@ -30,39 +30,37 @@ module Model
         return valid, params["User_id"]
     end
 
-    def register_values
+    def register_values(params)
         db=SQLite3::Database.new('db/database.db')
         
         db.results_as_hash = true
         usernames = db.execute("SELECT * FROM users")
 
-        session[:reg_username] = params["reg_username"]
-        session[:reg_password] = params["reg_password"]
-        session[:rereg_password] = params["rereg_password"]
-
-        if session[:reg_password] == session[:rereg_password]
+        if params["reg_password"] == params["rereg_password"]
 
             username_taken = false
             j = 0
             while j <= usernames.length - 1
-                if session[:reg_username] == usernames[j][1]
+                if params["reg_username"] == usernames[j][1]
                     username_taken = true
                 end
                 j += 1
             end
 
             if username_taken == false
-                session[:hash_password] = BCrypt::Password.create(session[:reg_password])
-                db.execute("INSERT INTO users (Username, Password) VALUES (?,?)", session[:reg_username], session[:hash_password])
+                hash_password = BCrypt::Password.create(params["reg_password"])
+                db.execute("INSERT INTO users (Username, Password) VALUES (?,?)", params["reg_username"], hash_password)
                 
-                session[:taken_username] = false
+                taken_username = false
             else
-                session[:taken_username] = true
+                taken_username = true
             end
-            session[:reg_complete] = true
+            reg_complete = true
         else
-            session[:reg_complete] = false
+            reg_complete = false
         end
+
+        return reg_complete, taken_username
     end
 
     def get_username(params, x)
