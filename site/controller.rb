@@ -9,7 +9,7 @@ enable :sessions
 
 
 before('/') do
-    session[:result] = get_username
+    session[:result] = get_username(params, session[:User_id])
     session[:post_text] = get_posts
 end
 
@@ -85,7 +85,9 @@ end
 #
 # @see Model#login_values
 post('/login_values') do
-    valid = login_values(params)
+    valid = login_values(params)[0]
+    session[:User_id] = login_values(params)[1]
+    p valid
     if valid == true
         redirect('/')
     else 
@@ -107,7 +109,7 @@ get('/logga_ut') do
 end
 
 before('/skapa_inlagg') do
-    login_check
+    login_check(params, session[:User_id])
 end
 
 # Displays a form, if you're logged in
@@ -124,7 +126,7 @@ end
 #
 # @see Model#upload_post
 post('/uploading_post') do
-    upload_post
+    upload_post(params, session[:User_id])
     redirect('/')
 end
 

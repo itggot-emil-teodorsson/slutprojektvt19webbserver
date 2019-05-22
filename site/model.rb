@@ -13,7 +13,7 @@ module Model
             if params["username"] == result[i][1]
                 if BCrypt::Password.new(result[i][2]) == params["password"]
                     valid = true
-                    session[:User_id] = result[i][0]
+                    params["User_id"] = result[i][0]
                     break
                 else
                     valid = false
@@ -24,8 +24,10 @@ module Model
 
             i += 1
         end
+
+        p params
         
-        return valid
+        return valid, params["User_id"]
     end
 
     def register_values
@@ -63,11 +65,12 @@ module Model
         end
     end
 
-    def get_username
+    def get_username(params, x)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
-
-        return db.execute("SELECT users.Username FROM users WHERE UserId = ?", session[:User_id])
+        
+        params["User_id"] = x
+        return db.execute("SELECT users.Username FROM users WHERE UserId = ?", params["User_id"])
     end
 
     def get_posts
@@ -78,16 +81,18 @@ module Model
         return db.execute("SELECT posts.Text, posts.PostId, posts.Upvotes, users.Username FROM posts INNER JOIN users ON users.UserId = posts.UserIdP")
     end
 
-    def login_check
+    def login_check(params, x)
         db=SQLite3::Database.new('db/database.db')
 
         db.results_as_hash = true
         result = db.execute("SELECT * FROM users")
 
+        params["User_id"] = x
+
         k = 0
         
         while k <= result.length - 1
-            if session[:User_id] == result[k][0]
+            if params["User_id"] == result[k][0]
                 session[:logged_in] = true
                 break
             else
@@ -98,15 +103,15 @@ module Model
         end
     end
 
-    def upload_post
+    def upload_post(params, x)
         db=SQLite3::Database.new('db/database.db')
         
         db.results_as_hash = true
         result = db.execute("SELECT * FROM posts")
 
-        session[:text] = params["p_text"]
+        params["User_id"] = x
 
-        db.execute("INSERT INTO posts (Text, UserIdP, Upvotes) VALUES (?,?,?)", session[:text], session[:User_id], 0)
+        db.execute("INSERT INTO posts (Text, UserIdP, Upvotes) VALUES (?,?,?)", params["p_text"], params["User_id"], 0)
     end
 
     def show_post
