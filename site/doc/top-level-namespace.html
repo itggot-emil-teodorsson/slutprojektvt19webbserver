@@ -724,7 +724,27 @@ redirects back to &#39;/show_post/:postId&#39;</p>
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>:post_id,</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ID of the post</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
   <p class="tag_title">See Also:</p>
   <ul class="see">
@@ -741,13 +761,13 @@ redirects back to &#39;/show_post/:postId&#39;</p>
       <pre class="lines">
 
 
-181
-182
 183
-184</pre>
+184
+185
+186</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'controller.rb', line 181</span>
+      <pre class="code"><span class="info file"># File 'controller.rb', line 183</span>
 
 <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/d_vote/:post_id</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_downvote_post'><span class='object_link'><a href="Model.html#downvote_post-instance_method" title="Model#downvote_post (method)">downvote_post</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
@@ -858,12 +878,12 @@ redirects back to &#39;/show_post/:postId&#39;</p>
       <pre class="lines">
 
 
-188
-189
-190</pre>
+190
+191
+192</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'controller.rb', line 188</span>
+      <pre class="code"><span class="info file"># File 'controller.rb', line 190</span>
 
 <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/edit_post</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_slim'>slim</span><span class='lparen'>(</span><span class='symbol'>:edit_post</span><span class='rparen'>)</span>
@@ -1204,12 +1224,12 @@ redirects back to &#39;/show_post/:postId&#39;</p>
       <pre class="lines">
 
 
-210
-211
-212</pre>
+217
+218
+219</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'controller.rb', line 210</span>
+      <pre class="code"><span class="info file"># File 'controller.rb', line 217</span>
 
 <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/remove_confirmed</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_slim'>slim</span><span class='lparen'>(</span><span class='symbol'>:remove_confirmed</span><span class='rparen'>)</span>
@@ -1237,7 +1257,27 @@ redirects back to &#39;/show_post/:postId&#39;</p>
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>:post_id,</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ID of the post</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
   <p class="tag_title">See Also:</p>
   <ul class="see">
@@ -1254,16 +1294,16 @@ redirects back to &#39;/show_post/:postId&#39;</p>
       <pre class="lines">
 
 
-203
-204
-205
-206</pre>
+210
+211
+212
+213</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'controller.rb', line 203</span>
+      <pre class="code"><span class="info file"># File 'controller.rb', line 210</span>
 
 <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/remove_post/:post_id</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_remove_post'><span class='object_link'><a href="Model.html#remove_post-instance_method" title="Model#remove_post (method)">remove_post</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:post_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_remove_post'><span class='object_link'><a href="Model.html#remove_post-instance_method" title="Model#remove_post (method)">remove_post</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_redirect'>redirect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/remove_confirmed</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1832,7 +1872,43 @@ that exist in the database and then redirects to either &#39;/&#39; or
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>e_text,</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The new text of the post</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>:post_id,</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ID of the post</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
   <p class="tag_title">See Also:</p>
   <ul class="see">
@@ -1849,13 +1925,13 @@ that exist in the database and then redirects to either &#39;/&#39; or
       <pre class="lines">
 
 
-195
-196
-197
-198</pre>
+200
+201
+202
+203</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'controller.rb', line 195</span>
+      <pre class="code"><span class="info file"># File 'controller.rb', line 200</span>
 
 <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/uploading_edit</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_edit_post'><span class='object_link'><a href="Model.html#edit_post-instance_method" title="Model#edit_post (method)">edit_post</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:post_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -1959,7 +2035,7 @@ that exist in the database and then redirects to either &#39;/&#39; or
 </div>
 
       <div id="footer">
-  Generated on Wed May 22 23:23:01 2019 by
+  Generated on Wed May 22 23:31:34 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.19 (ruby-2.4.2).
 </div>
