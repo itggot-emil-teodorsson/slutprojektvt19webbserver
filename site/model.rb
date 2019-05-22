@@ -1,6 +1,4 @@
 module Model
-
-    #om man sätter (params) så kallar du på hela dictionaryn och den kan inte sluta fungera om man byter från sinatra
     
     def login_values(params)
         db=SQLite3::Database.new('db/database.db')
@@ -36,31 +34,41 @@ module Model
         db.results_as_hash = true
         usernames = db.execute("SELECT * FROM users")
 
-        if params["reg_password"] == params["rereg_password"]
+        if params["reg_username"] != ""
+            empty_form = false
+            if params["reg_password"] != ""
+                empty_form = false
+                if params["reg_password"] == params["rereg_password"]
 
-            username_taken = false
-            j = 0
-            while j <= usernames.length - 1
-                if params["reg_username"] == usernames[j][1]
-                    username_taken = true
+                    username_taken = false
+                    j = 0
+                    while j <= usernames.length - 1
+                        if params["reg_username"] == usernames[j][1]
+                            username_taken = true
+                        end
+                        j += 1
+                    end
+
+                    if username_taken == false
+                        hash_password = BCrypt::Password.create(params["reg_password"])
+                        db.execute("INSERT INTO users (Username, Password) VALUES (?,?)", params["reg_username"], hash_password)
+                        
+                        taken_username = false
+                    else
+                        taken_username = true
+                    end
+                    reg_complete = true
+                else
+                    reg_complete = false
                 end
-                j += 1
-            end
-
-            if username_taken == false
-                hash_password = BCrypt::Password.create(params["reg_password"])
-                db.execute("INSERT INTO users (Username, Password) VALUES (?,?)", params["reg_username"], hash_password)
-                
-                taken_username = false
             else
-                taken_username = true
+                empty_form = true
             end
-            reg_complete = true
         else
-            reg_complete = false
+            empty_form = true
         end
 
-        return reg_complete, taken_username
+        return reg_complete, taken_username, empty_form
     end
 
     def get_username(params, x)
@@ -75,7 +83,6 @@ module Model
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
 
-        #returna bara istället för att tilldela en sessions variabel kan tilldela en variabel i controller.
         return db.execute("SELECT posts.Text, posts.PostId, posts.Upvotes, users.Username FROM posts INNER JOIN users ON users.UserId = posts.UserIdP")
     end
 

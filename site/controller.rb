@@ -46,14 +46,18 @@ end
 # @see Model#register_values
 post('/register_values') do
     reg_and_taken = register_values(params)
-    if reg_and_taken[0] == true
-        if reg_and_taken[1] == false
-            redirect('/reg_complete')
+    if reg_and_taken[2] == false
+        if reg_and_taken[0] == true
+            if reg_and_taken[1] == false
+                redirect('/reg_complete')
+            else
+                redirect('/username_taken')
+            end
         else
-            redirect('/username_taken')
+            redirect('/reg_failed')
         end
     else
-        redirect('/reg_failed')
+        redirect('/form_empty')
     end
 end
 
@@ -73,6 +77,12 @@ end
 #
 get('/username_taken') do
     slim(:username_taken)
+end
+
+# Displays an error message
+#
+get('/form_empty') do
+    slim(:form_empty)
 end
 
 # Displays a login form
