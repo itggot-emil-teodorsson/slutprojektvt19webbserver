@@ -150,8 +150,13 @@ end
 #
 # @see Model#upload_post
 post('/uploading_post') do
-    upload_post(params, session[:User_id])
-    redirect('/')
+    empty_form = upload_post(params, session[:User_id])
+
+    if empty_form == false
+        redirect('/')
+    else
+        redirect('/inlagg_tomt')
+    end
 end
 
 # Displays an individual post
@@ -198,8 +203,12 @@ end
 #
 # @see Model#edit_post
 post('/uploading_edit') do
-    edit_post(params, session[:post_id])
-    redirect('/')
+    empty_form = edit_post(params, session[:post_id])
+    if empty_form == false
+        redirect('/')
+    else
+        redirect('/inlagg_tomt')
+    end
 end
 
 # Deletes an existing post and redirects to '/remove_confirmed'
@@ -216,4 +225,8 @@ end
 #
 get('/remove_confirmed') do
     slim(:remove_confirmed)
+end
+
+get('/inlagg_tomt') do
+    slim(:inlagg_tomt)
 end

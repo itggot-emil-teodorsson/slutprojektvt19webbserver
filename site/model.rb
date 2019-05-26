@@ -160,7 +160,14 @@ module Model
 
         params["User_id"] = user_id
 
-        db.execute("INSERT INTO posts (Text, UserIdP, Upvotes) VALUES (?,?,?)", params["p_text"], params["User_id"], 0)
+        if params["p_text"] != ""
+            db.execute("INSERT INTO posts (Text, UserIdP, Upvotes) VALUES (?,?,?)", params["p_text"], params["User_id"], 0)
+            empty_form = false
+        else
+            empty_form = true
+        end
+
+        return empty_form
     end
 
     # Shows an individual post
@@ -255,7 +262,16 @@ module Model
 
         params["post_id"] = post_id
 
-        db.execute("UPDATE posts SET Text = ? WHERE postId = ?", params["e_text"], params["post_id"])
+        p params["e_text"]
+
+        if params["e_text"] != ""
+            db.execute("UPDATE posts SET Text = ? WHERE postId = ?", params["e_text"], params["post_id"])
+            empty_form = false
+        else
+            empty_form = true
+        end
+        
+        return empty_form
     end
 
     # Deletes a row from the posts table
