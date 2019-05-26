@@ -234,6 +234,30 @@ redirects back to &#39;/show_post/:postId&#39;.</p>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="top-level-namespace.html#GET__inlagg_tomt-instance_method" title="#GET /inlagg_tomt (instance method)">#<strong>GET /inlagg_tomt</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Displays a page that tells you that you can&#39;t upload an empty post.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="top-level-namespace.html#GET__logga_in-instance_method" title="#GET /logga_in (instance method)">#<strong>GET /logga_in</strong>  &#x21d2; Object </a>
     
 
@@ -761,13 +785,13 @@ redirects back to &#39;/show_post/:postId&#39;</p>
       <pre class="lines">
 
 
-183
-184
-185
-186</pre>
+188
+189
+190
+191</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'controller.rb', line 183</span>
+      <pre class="code"><span class="info file"># File 'controller.rb', line 188</span>
 
 <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/d_vote/:post_id</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_downvote_post'><span class='object_link'><a href="Model.html#downvote_post-instance_method" title="Model#downvote_post (method)">downvote_post</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
@@ -878,12 +902,12 @@ redirects back to &#39;/show_post/:postId&#39;</p>
       <pre class="lines">
 
 
-190
-191
-192</pre>
+195
+196
+197</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'controller.rb', line 190</span>
+      <pre class="code"><span class="info file"># File 'controller.rb', line 195</span>
 
 <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/edit_post</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_slim'>slim</span><span class='lparen'>(</span><span class='symbol'>:edit_post</span><span class='rparen'>)</span>
@@ -930,6 +954,49 @@ redirects back to &#39;/show_post/:postId&#39;</p>
 
 <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/form_empty</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_slim'>slim</span><span class='lparen'>(</span><span class='symbol'>:form_empty</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="GET__inlagg_tomt-instance_method">
+  
+    #<strong>GET /inlagg_tomt</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Displays a page that tells you that you can&#39;t upload an empty post</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+232
+233
+234</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'controller.rb', line 232</span>
+
+<span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/inlagg_tomt</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_slim'>slim</span><span class='lparen'>(</span><span class='symbol'>:inlagg_tomt</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1224,12 +1291,12 @@ redirects back to &#39;/show_post/:postId&#39;</p>
       <pre class="lines">
 
 
-217
-218
-219</pre>
+226
+227
+228</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'controller.rb', line 217</span>
+      <pre class="code"><span class="info file"># File 'controller.rb', line 226</span>
 
 <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/remove_confirmed</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_slim'>slim</span><span class='lparen'>(</span><span class='symbol'>:remove_confirmed</span><span class='rparen'>)</span>
@@ -1294,13 +1361,13 @@ redirects back to &#39;/show_post/:postId&#39;</p>
       <pre class="lines">
 
 
-210
-211
-212
-213</pre>
+219
+220
+221
+222</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'controller.rb', line 210</span>
+      <pre class="code"><span class="info file"># File 'controller.rb', line 219</span>
 
 <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/remove_post/:post_id</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_remove_post'><span class='object_link'><a href="Model.html#remove_post-instance_method" title="Model#remove_post (method)">remove_post</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
@@ -1366,14 +1433,14 @@ redirects back to &#39;/show_post/:postId&#39;</p>
       <pre class="lines">
 
 
-162
-163
-164
-165
-166</pre>
+167
+168
+169
+170
+171</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'controller.rb', line 162</span>
+      <pre class="code"><span class="info file"># File 'controller.rb', line 167</span>
 
 <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/show_post/:postId</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_values'>values</span> <span class='op'>=</span> <span class='id identifier rubyid_show_post'><span class='object_link'><a href="Model.html#show_post-instance_method" title="Model#show_post (method)">show_post</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
@@ -1492,13 +1559,13 @@ redirects back to &#39;/show_post/:postId&#39;</p>
       <pre class="lines">
 
 
-173
-174
-175
-176</pre>
+178
+179
+180
+181</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'controller.rb', line 173</span>
+      <pre class="code"><span class="info file"># File 'controller.rb', line 178</span>
 
 <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/u_vote/:post_id</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_upvote_post'><span class='object_link'><a href="Model.html#upvote_post-instance_method" title="Model#upvote_post (method)">upvote_post</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
@@ -1925,17 +1992,25 @@ that exist in the database and then redirects to either &#39;/&#39; or
       <pre class="lines">
 
 
-200
-201
-202
-203</pre>
+205
+206
+207
+208
+209
+210
+211
+212</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'controller.rb', line 200</span>
+      <pre class="code"><span class="info file"># File 'controller.rb', line 205</span>
 
 <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/uploading_edit</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_edit_post'><span class='object_link'><a href="Model.html#edit_post-instance_method" title="Model#edit_post (method)">edit_post</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:post_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_redirect'>redirect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_empty_form'>empty_form</span> <span class='op'>=</span> <span class='id identifier rubyid_edit_post'><span class='object_link'><a href="Model.html#edit_post-instance_method" title="Model#edit_post (method)">edit_post</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:post_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_empty_form'>empty_form</span> <span class='op'>==</span> <span class='kw'>false</span>
+        <span class='id identifier rubyid_redirect'>redirect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+        <span class='id identifier rubyid_redirect'>redirect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/inlagg_tomt</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2016,14 +2091,24 @@ that exist in the database and then redirects to either &#39;/&#39; or
 152
 153
 154
-155</pre>
+155
+156
+157
+158
+159
+160</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'controller.rb', line 152</span>
 
 <span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/uploading_post</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_upload_post'><span class='object_link'><a href="Model.html#upload_post-instance_method" title="Model#upload_post (method)">upload_post</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:User_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_redirect'>redirect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_empty_form'>empty_form</span> <span class='op'>=</span> <span class='id identifier rubyid_upload_post'><span class='object_link'><a href="Model.html#upload_post-instance_method" title="Model#upload_post (method)">upload_post</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:User_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_empty_form'>empty_form</span> <span class='op'>==</span> <span class='kw'>false</span>
+        <span class='id identifier rubyid_redirect'>redirect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+        <span class='id identifier rubyid_redirect'>redirect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/inlagg_tomt</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2035,7 +2120,7 @@ that exist in the database and then redirects to either &#39;/&#39; or
 </div>
 
       <div id="footer">
-  Generated on Wed May 22 23:31:34 2019 by
+  Generated on Sun May 26 16:49:58 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.19 (ruby-2.4.2).
 </div>

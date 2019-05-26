@@ -227,6 +227,8 @@ get('/remove_confirmed') do
     slim(:remove_confirmed)
 end
 
+# Displays a page that tells you that you can't upload an empty post
+#
 get('/inlagg_tomt') do
     slim(:inlagg_tomt)
 end

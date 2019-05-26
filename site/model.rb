@@ -152,6 +152,8 @@ module Model
     # @param [Hash] params form data
     # @option params [String] p_text The post's text
     # @param [Integer] user_id The user's ID
+    # @return [Hash]
+    #   * empty_form [Boolean] whether the form is empty or not
     def upload_post(params, user_id)
         db=SQLite3::Database.new('db/database.db')
         
@@ -256,6 +258,8 @@ module Model
     # @param [Hash] params form data
     # @option params [String] e_text The new text in the post
     # @param [Integer] post_id The post's ID
+    # @return [Hash]
+    #   * empty_form [Boolean] whether the form is empty or not
     def edit_post(params, post_id)
         db = SQLite3::Database.new("db/database.db")
         db.results_as_hash = true
